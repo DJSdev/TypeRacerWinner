@@ -19,7 +19,7 @@ pip install requirements.txt
 ```
 racer = Racer()
 racer.open_browser(browser="Firefox")
-racer.login_typeracer("username", "password")
+racer.login_typeracer("username", "password")   #Optional
 racer.do_race(secs_between_keystrokes=.02, room_for_error=0)
 racer.complete_captcha_challenge(api_key="Google_Vision_API_Key")
 ```

@@ -28,8 +28,9 @@ class Racer:
         browser = browser.lower()
         try:
             self.driver = browser_dict[browser]()
-            self.driver.implicitly_wait(15)
-            self.wait = WebDriverWait(self.driver, 15)
+            self.driver.implicitly_wait(30)
+            self.wait = WebDriverWait(self.driver, 30)
+            self.driver.get("https://play.typeracer.com/")
         except KeyError as e:
             raise Exception("Browser not supported. Only Chrome and Firefox")
         except WebDriverException as e:
@@ -43,7 +44,6 @@ class Racer:
 
         Navigates to TypeRacer.com and logs into an account.
         '''
-        self.driver.get("https://play.typeracer.com/")
         time.sleep(1)
         try:
             self.driver.find_element_by_class_name("gwt-Anchor").click()
@@ -69,13 +69,13 @@ class Racer:
 
         time.sleep(1)
         # type_race_words is the magic XPATH to the words that make up the typing test
-        type_race_words = '//*[@id="gwt-uid-16"]/table/tbody/tr[2]/td/table/tbody/tr[1]/td/table/tbody/tr[1]/td/div/div'
+        type_race_words = '//*[@class="mainViewport"]/div/table/tbody/tr[2]/td[3]/table/tbody/tr[2]/td/table/tbody/tr[1]/td/table/tbody/tr[1]/td/div/div'
         self.driver.find_element_by_link_text("Enter a typing race").click()
-        words  = self.wait.until(EC.presence_of_element_located((By.XPATH, type_race_words)))
         inputbox = self.wait.until(EC.element_to_be_clickable((By.CLASS_NAME, "txtInput")))
+        words  = self.wait.until(EC.presence_of_element_located((By.XPATH, type_race_words)))
         error_modulus = {0:10, 1:5, 2:3, 3:2}
-
         for letter in words.text:
+            print(letter)
             rannum = random.randint(2, 9)
             if rannum % error_modulus[room_for_error] == 0:
                 inputbox.send_keys(rannum)

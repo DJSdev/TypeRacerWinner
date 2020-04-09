@@ -11,11 +11,13 @@ A simple project that wins at TypeRacer. I wanted to see how far it would let me
 3. Will need a Google Vision API key. Can be gotten for free from cloud.google.com
 
 ## Installation
-```pip install requirements.txt
+```
+pip install requirements.txt
 ```
 
 ## Usage
-```racer = Racer()
+```
+racer = Racer()
 racer.open_browser(browser="Firefox")
 racer.login_typeracer("username", "password")
 racer.do_race(secs_between_keystrokes=.02, room_for_error=0)

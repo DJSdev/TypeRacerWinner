@@ -19,7 +19,7 @@ class Racer:
     
     def open_browser(self, browser=None):
         '''
-        Parameters
+        Parameters:
         browser -- Name of a browser to open (Only supports Chrome and Firefox)
 
         The proper driver (chromedriver.exe or gechodriver.exe) for the browser must exist in PATH or in the directory this is run from

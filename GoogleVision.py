@@ -5,7 +5,7 @@ import json
 
 class Vision:
     """
-    Keyword Arguments:
+    Parameters:
     api_key -- is the Google Vision API key needed to perform text analyze using the Google Vision API
 
     An instance of Vision allows users to specify an image url and return the text found inside the image using the finish_challenge() function
@@ -16,10 +16,12 @@ class Vision:
 
     def _build_json_payload(self, image_url: str):
         '''
-        Builds a JSON payload for sending to the Google Vision API.
+        Returns string (json string)
 
-        Keyword Arguments:
+        Parameters:
         image_url   -- A URI that points to an image on the internet - https://www.google.com/picture.jpg
+
+        Builds a JSON payload for sending to the Google Vision API.
         '''
         image = requests.get(image_url).content
         request_list = []
@@ -40,9 +42,9 @@ class Vision:
 
     def _google_vision_analyze(self, json_payload: str, api_key: str):
         '''
-        google_vision_analyze(json, api_key) -> dict
+        Returns dict
 
-        Keyword Arguments:
+        Parameters:
         json    -- is the result of json.dumps() 
         api_key -- is the Google Vision API key needed to perform text analyze using the Google Vision API
 
@@ -53,9 +55,9 @@ class Vision:
 
     def _get_challenge_text(self, response_from_google: dict):
         '''
-        get_challenge_text(response_from_google) -> string
+        Returns string
 
-        Keyword Arguments:
+        Parameters:
         response_from_google -- is dictionary from the google_vision_analyze() function. This is the response from the Google Vision API request
 
         The dictionary needs drilled into to pull the challenge text out of it
@@ -64,9 +66,9 @@ class Vision:
 
     def finish_challenge(self, url):
         '''
-        finish_challenge(url) -> string
+        Returns string
 
-        Keyword Arguments:
+        Parameters:
         url -- A URI that points to an image on the internet - https://www.google.com/picture.jpg
 
         Returns a string of text from a picture after analyzing it with the Google Vision API
